@@ -50,10 +50,16 @@ instance.interceptors.response.use(
 
 export default instance
 
-export const request = (url: string, method: Method = 'Get', submitData: object) => {
+type Data<T> = {
+  code: number
+  message: string
+  data: T
+}
+
+export const request = <T>(url: string, method: Method = 'Get', submitData: object) => {
   //参数：地址，请求方式，提交数据
   //返回：axios的请求结果（promise对象）
-  return instance({
+  return instance.request<unknown, Data<T>>({
     url,
     method,
     //1.如果是get请求，需要使用params来传递submitData

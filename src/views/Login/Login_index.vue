@@ -1,9 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="app">
-    <!-- 路由一级出口 -->
-    <router-view></router-view>
+  <div>
+    <van-button>anli</van-button>
   </div>
 </template>
 
