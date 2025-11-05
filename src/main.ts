@@ -4,6 +4,7 @@ import App from './App.vue'
 import pinia from './stores'
 import router from './router'
 //在main.ts中引入vant样式文件,以确保全局可用,在main.scss之前引入
+import 'virtual:svg-icons-register'
 import 'vant/lib/index.css'
 import './styles/main.scss'
 

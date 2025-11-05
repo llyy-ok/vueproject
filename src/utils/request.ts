@@ -1,7 +1,7 @@
-import axios from 'axios'
+import axios, { AxiosError, type Method } from 'axios'
+import router from '@/router'
 import { useUserStore } from '@/stores'
 import { showToast } from 'vant'
-import { AxiosError } from 'axios'
 const instance = axios.create({
   // TODO 1. 基础地址，超时时间
   baseURL: 'https://consult-api.itheima.net/',
@@ -56,7 +56,7 @@ type Data<T> = {
   data: T
 }
 
-export const request = <T>(url: string, method: Method = 'Get', submitData: object) => {
+export const request = <T>(url: string, method: Method = 'Get', submitData?: object) => {
   //参数：地址，请求方式，提交数据
   //返回：axios的请求结果（promise对象）
   return instance.request<unknown, Data<T>>({
