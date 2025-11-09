@@ -51,6 +51,9 @@ const onSend = async () => {
 onUnmounted(() => {
   if (timer) clearInterval(timer)
 })
+//控制密码可见性
+// 控制密码是否显示
+const show = ref(false)
 </script>
 
 <template>
@@ -60,7 +63,7 @@ onUnmounted(() => {
     <div class="login-head">
       <h3>{{ isPass ? '密码登录' : '短信验证码登录' }}</h3>
       <a href="javascript:;">
-        <span @click="isPass = !isPass">{{ isPass ? '密码登录' : '短信验证码登录' }}</span>
+        <span @click="isPass = !isPass">{{ isPass ? '短信验证码登录' : '密码登录' }}</span>
         <van-icon name="arrow"></van-icon>
       </a>
     </div>
@@ -77,9 +80,14 @@ onUnmounted(() => {
         v-model="password"
         :rules="passwordRules"
         placeholder="请输入密码"
-        type="password"
+        :type="show ? 'text' : 'password'"
+        ><template #button
+          ><cp-icon
+            @click="show = !show"
+            :name="`login-eye-${show ? 'on' : 'off'}`"
+          ></cp-icon></template
       ></van-field>
-      <van-field v-else v-model="code" :rules="codeRules" placeholder="请输入验证码" type="password"
+      <van-field v-else v-model="code" :rules="codeRules" placeholder="请输入验证码" type="test"
         ><template #button>
           <span class="btn-send" :class="{ active: time > 0 }" @click="onSend">{{
             time > 0 ? time + 's后再次发送' : '发送验证码'

@@ -1,5 +1,5 @@
 import { request } from '@/utils/request'
-import type { User, CodeType } from '@/types/user'
+import type { User, CodeType, UserInfo } from '@/types/user'
 //密码登录
 export const loginByPassword = (mobile: string, password: string) =>
   request<User>('login/password', 'POST', {
@@ -17,3 +17,5 @@ export const loginByMobile = (mobile: string, code: string) =>
     mobile,
     code,
   })
+// 获取用户信息
+export const getUserInfo = () => request<UserInfo>('patient/myUser', 'GET')
